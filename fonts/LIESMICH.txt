@@ -1,0 +1,6 @@
+Hier die Webfont-Dateien ablegen (am besten .woff2):
+  panedodo-display-semibold.woff2
+  neue-haas-unica-pro-medium.woff2
+  neue-haas-unica-pro-black.woff2
+Auf einem Rechner, auf dem die Schriften installiert sind, werden sie auch ohne diese Dateien verwendet.
+Neue Haas Unica Pro ist eine lizenzpflichtige Schrift (Monotype) – für die Webnutzung eine Weblizenz verwenden.
