@@ -246,14 +246,21 @@ position: relative; z-index: 1;
   background: url("../assets/bg_mise.webp") center / 100% 100% no-repeat;
 }
 .mise__title { color: var(--c-black); text-align: left; }
+.mise__heading {
+  position: absolute; z-index: 1; left: 0; right: 0; top: calc(136 * var(--u));
+  text-align: center; color: var(--c-blue); transform: none;
+}
 .mise__img {
-  position: relative; z-index: 2;
-  width: 100%; height: auto;
+  position: absolute; z-index: 2;
+  left: calc(35 * var(--u)); top: calc(-109 * var(--u));
+  width: calc(1656 * var(--u)); max-width: none; height: auto;
+  pointer-events: none;
 }
 .mise__body {
   position: relative; z-index: 3;
   width: calc(826 * var(--u));
-  margin: calc(64 * var(--u)) auto 0;
+  margin: 0 auto;
+  padding-top: calc(485 * var(--u));
   padding-bottom: calc(384 * var(--u));
 }
 
@@ -480,7 +487,9 @@ position: relative; z-index: 1;
   .mise { height: auto; margin-top: 0; padding: 0 0 56px; }
   .mise__bg { background-color: var(--c-lavender); }
   .mise { padding-top: 28px; }
-  .mise__img { margin-bottom: 0; }
+  .mise__heading { position: relative; top: auto; font-size: 3.6rem; padding: 0 var(--gutter); }
+  .mise__img { position: relative; left: auto; top: auto; width: 100%; margin-bottom: 0; }
+  .mise__body { padding-top: 0; }
   .mise__body, .backen__body {
     position: relative; left: auto; top: auto;
     width: auto; margin: 32px var(--gutter) 0;
