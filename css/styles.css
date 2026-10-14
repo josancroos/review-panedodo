@@ -465,7 +465,9 @@ position: relative; z-index: 1;
 }
 
 @media (max-width: 800px) {
-  :root { --section-gap: 96px; }
+  :root { --section-gap: 96px; --fs-display: 14vw; --fs-eyebrow: clamp(1.4rem, 6.4vw, 3rem); }
+  .display { white-space: normal; overflow-wrap: anywhere; }
+  .step-title { font-size: 11vw; }
 
   .btn, .answer { padding: 12px 24px; }
   .answer { font-size: var(--fs-body); }
@@ -478,7 +480,7 @@ position: relative; z-index: 1;
     background: url("../assets/star_mobile.webp") center / 100% 100% no-repeat;
     transform: rotate(90deg);
   }
-  .hero__baguette { left: 12%; width: 76%; top: 230px; }
+  .hero__baguette { left: 12%; width: 76%; top: 300px; }
 
   .tabs { --tabs-padding-top: 24px; }
   .tabs__list { justify-content: flex-start; gap: 24px; }
@@ -487,7 +489,7 @@ position: relative; z-index: 1;
   .mise { height: auto; margin-top: 0; padding: 0 0 56px; }
   .mise__bg { background-color: var(--c-lavender); }
   .mise { padding-top: 28px; }
-  .mise__heading { position: relative; top: auto; font-size: 3.6rem; padding: 0 var(--gutter); }
+  .mise__heading { position: relative; top: auto; font-size: 10.5vw; padding: 0 var(--gutter); }
   .mise__img { position: relative; left: auto; top: auto; width: 100%; margin-bottom: 0; }
   .mise__body { padding-top: 0; }
   .mise__body, .backen__body {
@@ -496,10 +498,10 @@ position: relative; z-index: 1;
   }
 
 
-  .aufgehen { padding-block: 40px; }
-  .aufgehen__title { gap: 28vw; }
-  .aufgehen__img { top: calc(40px + 11vw); left: 3%; width: 94%; }
-  .aufgehen__bubble { --bw: 104px; left: 1%; top: 8px; }
+  .aufgehen { padding-block: 88px 40px; }
+  .aufgehen__title { gap: 28vw; font-size: 10.5vw; }
+  .aufgehen__img { top: calc(88px + 11vw); left: 3%; width: 94%; }
+  .aufgehen__bubble { --bw: 104px; left: 1%; top: 0; }
 
   .backen { padding: calc(256 * var(--u)) 0; }
   .backen > .title-unit { position: relative; top: auto; left: auto; }
