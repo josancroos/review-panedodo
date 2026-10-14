@@ -442,6 +442,7 @@ position: relative; z-index: 1;
 .footer__small a, .footer__legal a, .footer__mail, .footer_title { text-decoration: none; }
 .footer__small a:hover, .footer__legal a:hover, .footer__mail:hover, .footer_title:hover { text-decoration: underline; }
 .footer__social { display: flex; gap: 20px; align-items: flex-start; }
+.footer__icon { display: inline-block; margin-left: 12px; vertical-align: middle; }
 .footer__social .footer__title { margin-bottom: .6em; }
 .social { display: flex; gap: 8px; }
 .footer__mail { font-size: var(--fs-small); line-height: 1.5; }
