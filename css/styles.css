@@ -271,7 +271,7 @@ position: relative; z-index: 1;
   justify-content: center;
 }
 .chapter__bg { position: absolute; z-index: 0; inset: 0; background: center / 100% 100% no-repeat; }
-.chapter__bg--backen { background-image: url("../assets/bg_backen.webp"); }
+.chapter__bg--backen { background-image: url("../assets/bg_chur.svg"); }
 .chapter__bg--mise { background-image: url("../assets/bg_mise.webp"); }
 .chapter__title {
   position: relative; z-index: 1;
