@@ -303,7 +303,7 @@ position: relative; z-index: 1;
 .chapter__body .lead, .mise__body .lead {
   font-size: max(calc(48 * var(--u)), 1.35rem);
   font-weight: 500; line-height: 1.12; letter-spacing: -0.01em;
-  text-transform: none; text-align: center; text-wrap: balance;
+  text-transform: uppercase; text-align: center; text-wrap: balance;
   max-width: 22em;
 }
 .chapter__body p:not(.lead), .mise__body p:not(.lead), .mampf__copy {
