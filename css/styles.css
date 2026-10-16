@@ -285,6 +285,11 @@ position: relative; z-index: 1;
 .chapter__title--pink { color: var(--c-pink); }
 .chapter__title--blue { color: var(--c-blue); }
 .chapter__title--black { color: var(--c-black); }
+.chapter__title--white { color: var(--c-white); }
+.chapter--green { background-color: var(--c-green); }
+.chapter--yellow { background-color: var(--c-yellow); }
+.chapter--pink { background-color: var(--c-pink); }
+.mampf.mampf--green { background-color: var(--c-green); }
 .chapter__body {
   position: relative; z-index: 1;
   width: calc(826 * var(--u));
