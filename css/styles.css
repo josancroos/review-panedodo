@@ -316,11 +316,18 @@ position: relative; z-index: 1;
 .backen > .title-unit {
   position: relative; z-index: 1; left: auto; top: auto; width: 100%;
 }
+.backen__formen {
+  position: relative; z-index: 1;
+  width: calc(1729 * var(--u));
+  margin-left: calc(30 * var(--u));
+}
 .backen__img {
   position: relative; z-index: 1;
-  left: auto; top: auto;
-  width: calc(1729 * var(--u)); max-width: none; height: auto;
-  margin-left: calc(30 * var(--u));
+  width: 100%; max-width: none; height: auto;
+}
+.formen__title {
+  position: absolute; z-index: 2; left: 12%; top: 38%;
+  color: var(--c-white); pointer-events: none;
 }
 .backen__body {
   position: relative; z-index: 2;
@@ -587,7 +594,8 @@ position: relative; z-index: 1;
 
   .backen { padding: calc(256 * var(--u)) 0; }
   .backen > .title-unit { position: relative; top: auto; left: auto; }
-  .backen__img { left: 0; top: auto; width: 100%; margin-left: 0; }
+  .backen__formen { width: 100%; margin-left: 0; }
+  .formen__title { left: 0; right: 0; top: 40%; text-align: center; }
   .backen__body { width: auto; margin: 0 var(--gutter); }
   .backen__body .btn { align-self: center; }
 
