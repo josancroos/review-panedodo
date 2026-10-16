@@ -546,3 +546,10 @@ position: relative; z-index: 1;
   .kontakt__form { width: 70%; }
   .field input, .field textarea { height: 40px; padding: 10px 0; font-size: 0.9rem; }
 }
+
+/* Keine weissen Streifen zwischen Kapiteln: Wellen-Hintergründe überlappen die Nachbarn,
+   deren Farbe scheint durch die transparenten Wellenränder. */
+.weg { --wave-overlap: calc(120 * var(--u)); }
+.mise { margin-top: calc(-1 * var(--wave-overlap)); }
+#chur { margin-top: calc(-1 * var(--wave-overlap)); z-index: 2; }
+#pause { margin-top: calc(-220 * var(--u)); z-index: 1; }
