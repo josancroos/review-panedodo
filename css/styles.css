@@ -450,34 +450,6 @@ position: relative; z-index: 1;
   font-size: var(--fs-small); line-height: 1.5;
 }
 
-/* ---------- FAQ ---------- */
-.faq { display: flex; flex-direction: column; align-items: center; gap: 32px; }
-.faq .title-unit { width: 100%; }
-.faq__container { width: min(calc(1388 * var(--u)), 100% - 2 * var(--gutter)); display: flex; flex-direction: column; gap: 64px; }
-.faq__block { display: flex; flex-direction: column; gap: 16px; }
-.faq__heading {
-  color: var(--c-yellow); text-align: center; text-transform: uppercase;
-  font-size: var(--fs-eyebrow); line-height: .9; font-weight: 500;
-  margin-bottom: 16px;
-}
-.faq__item { border-bottom: 1px solid var(--c-black); padding: 15px 0; }
-.faq__item summary {
-  display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;
-  list-style: none; cursor: pointer;
-}
-.faq__item summary::-webkit-details-marker { display: none; }
-.faq__item summary::after {
-  content: ""; flex: none; width: 16px; height: 16px; margin-top: .1em;
-  background:
-    linear-gradient(currentColor, currentColor) center / 12px 1.5px no-repeat,
-    linear-gradient(currentColor, currentColor) center / 1.5px 12px no-repeat;
-  transition: transform .2s ease;
-}
-.faq__item[open] summary::after {
-  background: linear-gradient(currentColor, currentColor) center / 9px 1.5px no-repeat;
-}
-.faq__item p { margin-top: 24px; max-width: 60em; }
-
 /* ---------- Kontakt + Footer (grüne Fläche) ---------- */
 .green-zone {
   position: relative;
