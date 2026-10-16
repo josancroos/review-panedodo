@@ -294,14 +294,14 @@ position: relative; z-index: 1;
 }
 /* Textblock: zentrierte, schmale Spalte (Ref. Mobbin: Wise Story, Mews, Headspace) */
 .chapter__body, .mise__body {
-  align-items: center; text-align: center;
+  align-items: flex-start; text-align: left;
   gap: max(calc(24 * var(--u)), 14px);
 }
 .chapter__body { width: min(calc(760 * var(--u)), 100% - 2 * var(--gutter)); }
 .chapter__body .lead, .mise__body .lead {
   font-size: max(calc(48 * var(--u)), 1.35rem);
   font-weight: 500; line-height: 1.12; letter-spacing: -0.01em;
-  text-transform: uppercase; text-align: center; text-wrap: balance;
+  text-transform: uppercase; text-align: left; text-wrap: balance;
   max-width: 22em;
 }
 .chapter__body p:not(.lead), .mise__body p:not(.lead), .mampf__copy {
@@ -327,7 +327,7 @@ position: relative; z-index: 1;
 .mampf__copy {
   position: relative; z-index: 1;
   width: calc(640 * var(--u));
-  text-align: center;
+  text-align: left;
 }
 
 /* ---------- Quiz ---------- */
