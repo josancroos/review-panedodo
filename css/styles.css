@@ -183,7 +183,7 @@ button, input, textarea { font: inherit; color: inherit; }
 /* ---------- Hero ---------- */
 .hero {
   position: relative;
-  min-height: calc(1240 * var(--u));
+  min-height: max(calc(1240 * var(--u)), 100vh); min-height: max(calc(1240 * var(--u)), 100svh);
   padding: max(calc(210 * var(--u)), 90px) 0 calc(72 * var(--u));
 }
 .hero__star {
@@ -331,7 +331,7 @@ position: relative; z-index: 1;
 }
 
 /* ---------- Quiz ---------- */
-.quiz { position: relative; padding-bottom: calc(40 * var(--u)); }
+.quiz { position: relative; padding-bottom: calc(40 * var(--u)); min-height: 100vh; min-height: 100svh; }
 .quiz__bg {
   position: absolute; left: 0; right: 0; top: calc(328 * var(--u));
   height: calc(935 * var(--u));
@@ -390,7 +390,7 @@ position: relative; z-index: 1;
 }
 .kontakt {
   position: relative;
-  min-height: calc(1042 * var(--u));
+  min-height: max(calc(1042 * var(--u)), 100vh); min-height: max(calc(1042 * var(--u)), 100svh);
   display: flex; flex-direction: column; align-items: center; gap: 32px;
 }
 .kontakt .title-unit { width: 100%; }
@@ -464,7 +464,7 @@ position: relative; z-index: 1;
   .btn, .answer { padding: 12px 24px; }
   .answer { font-size: var(--fs-body); }
 
-  .hero { min-height: 0; padding-top: 250px; padding-bottom: 38vw; }
+  .hero { min-height: 100vh; min-height: 100svh; padding-top: 250px; padding-bottom: 38vw; }
   .hero__star { display: none; }
   .hero__star-mobile {
     display: block; position: absolute; z-index: 0;
@@ -506,7 +506,7 @@ position: relative; z-index: 1;
     background-size: 100% 100%;
   }
 
-  .kontakt { min-height: 0; }
+  .kontakt { min-height: 100vh; min-height: 100svh; }
   .kontakt__stage {
     position: relative; display: grid; place-items: center;
     width: 100%; aspect-ratio: 400 / 295;
@@ -534,3 +534,10 @@ position: relative; z-index: 1;
 .mise { margin-top: calc(-1 * var(--wave-overlap)); }
 #chur { margin-top: calc(-1 * var(--wave-overlap)); z-index: 2; }
 #pause { margin-top: calc(-220 * var(--u)); z-index: 1; }
+
+/* Einstieg "Komm mit!" füllt mit der Tab-Leiste zusammen die ganze Bildschirmhöhe */
+.weg > .title-unit {
+  min-height: calc(100vh - max(calc(124 * var(--u)), 40px) - 40px);
+  min-height: calc(100svh - max(calc(124 * var(--u)), 40px) - 40px);
+  display: flex; flex-direction: column; justify-content: center;
+}
