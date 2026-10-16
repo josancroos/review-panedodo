@@ -236,6 +236,9 @@ position: relative; z-index: 1;
 /* Mise en Place */
 .mise {
   position:relative;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: calc(72 * var(--u));
+  padding: calc(160 * var(--u)) var(--gutter);
   min-height: 100vh; min-height: 100svh;
   margin-top: max(calc(32 * var(--u)), 8px);
   margin-bottom: -1px;
@@ -246,22 +249,14 @@ position: relative; z-index: 1;
 }
 .mise__title { color: var(--c-black); }
 .mise__heading {
-  position: absolute; z-index: 3; left: 0; right: 0; top: calc(136 * var(--u));
-  text-align: center; color: var(--c-blue); transform: none;
+  position: relative; z-index: 3;
+  text-align: center; color: var(--c-blue);
   font-size: max(calc(200 * var(--u)), 2.6rem); white-space: normal;
-}
-.mise__img {
-  position: absolute; z-index: 2;
-  left: calc(35 * var(--u)); top: calc(-109 * var(--u));
-  width: calc(1656 * var(--u)); max-width: none; height: auto;
-  pointer-events: none;
 }
 .mise__body {
   position: relative; z-index: 3;
   width: min(calc(760 * var(--u)), 100% - 2 * var(--gutter));
   margin: 0 auto;
-  padding-top: calc(485 * var(--u));
-  padding-bottom: calc(384 * var(--u));
 }
 
 .step-title { font-size: max(calc(200 * var(--u)), 2.6rem); }
@@ -498,7 +493,6 @@ position: relative; z-index: 1;
   .mise__bg { background-color: var(--c-lavender); }
   .mise { padding-top: 28px; }
   .mise__heading { position: relative; top: auto; font-size: 10.5vw; padding: 0 var(--gutter); }
-  .mise__img { position: relative; left: auto; top: auto; width: 100%; margin-bottom: 0; }
   .mise__body { padding-top: 0; }
   .mise__body {
     position: relative; left: auto; top: auto;
