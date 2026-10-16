@@ -286,7 +286,7 @@ position: relative; z-index: 1;
 .chapter__title--white { color: var(--c-white); }
 .chapter--green { background-color: var(--c-green); }
 .chapter--yellow { background-color: var(--c-yellow); }
-.chapter--pink { background-color: var(--c-pink); }
+.chapter--pink { background-color: var(--c-pink-dark); }
 .mampf.mampf--green { background-color: var(--c-green); }
 .chapter__body {
   position: relative; z-index: 1;
