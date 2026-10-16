@@ -343,7 +343,15 @@ position: relative; z-index: 1;
   display: flex; align-items: center; justify-content: center;
   background: url("../assets/mampf.webp") center / contain no-repeat;
 }
+.mampf { position: relative; }
 .mampf .title-unit { width: 100%; }
+.mampf__eyebrow { max-width: calc(1100 * var(--u)); margin-inline: auto; }
+.mampf__title { font-size: var(--fs-display); }
+.mampf__copy {
+  position: absolute; z-index: 1; left: 50%; top: 68%;
+  width: calc(560 * var(--u)); transform: translateX(-50%);
+  font-size: var(--fs-body); line-height: 1.2; text-align: center;
+}
 
 /* ---------- Quiz ---------- */
 .quiz { position: relative; padding-bottom: calc(40 * var(--u)); }
@@ -518,6 +526,8 @@ position: relative; z-index: 1;
   .backen__body .btn { align-self: center; }
 
   .mampf { height: auto; aspect-ratio: 1728 / 907; }
+  .mampf__eyebrow { font-size: clamp(0.9rem, 4vw, 1.4rem); }
+  .mampf__copy { width: 62%; top: 66%; font-size: 0.7rem; }
 
   .quiz__bg { top: 18%; height: 70%; }
   .quiz__paper {
