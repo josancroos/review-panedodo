@@ -326,9 +326,9 @@ position: relative; z-index: 1;
   width: 100%; max-width: none; height: auto;
 }
 .formen__title {
-  position: absolute; z-index: 2; left: 0; right: 0; top: 68%;
-  font-size: var(--fs-display); line-height: 0.95;
-  text-align: center; color: var(--c-blue); pointer-events: none;
+  position: absolute; z-index: 0; left: 0; right: 0; top: 50%;
+  font-size: calc(var(--fs-display) * 1.6); line-height: 0.95;
+  text-align: center; color: var(--c-white); pointer-events: none;
   transform: translateY(-50%) rotate(-4deg);
 }
 .backen__body {
