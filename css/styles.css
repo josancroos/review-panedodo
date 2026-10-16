@@ -309,17 +309,6 @@ position: relative; z-index: 1;
   line-height: 1.5; max-width: 34em;
   text-wrap: pretty;
 }
-.chur__products {
-  position: relative; z-index: 1;
-  display: flex; justify-content: center; gap: calc(30 * var(--u));
-  width: min(calc(1389 * var(--u)), 100%);
-  list-style: none; padding: 0; margin: 0;
-}
-.chur__products li { flex: 1 1 0; min-width: 0; }
-.chur__products li:nth-child(odd) { transform: rotate(-2deg); }
-.chur__products li:nth-child(even) { transform: rotate(2deg) translateY(calc(24 * var(--u))); }
-.chur__products img { width: 100%; aspect-ratio: 600 / 378; object-fit: cover; }
-
 /* Mampf */
 .mampf {
   position: relative;
@@ -503,8 +492,6 @@ position: relative; z-index: 1;
   .chapter { padding-block: 64px; gap: 32px; }
   .chapter__title { font-size: 11vw; }
   .chapter__body { width: auto; margin: 0 var(--gutter); }
-  .chur__products { flex-wrap: wrap; }
-  .chur__products li { flex: 1 1 42%; }
 
   .mampf { height: auto; aspect-ratio: 1728 / 907; }
   .mampf { gap: 2vw; }
