@@ -243,7 +243,7 @@ position: relative; z-index: 1;
   position: absolute; inset: 0;
   background: url("../assets/bg_mise.webp") center / 100% 100% no-repeat;
 }
-.mise__title { color: var(--c-black); text-align: left; }
+.mise__title { color: var(--c-black); }
 .mise__heading {
   position: absolute; z-index: 3; left: 0; right: 0; top: calc(136 * var(--u));
   text-align: center; color: var(--c-blue); transform: none;
@@ -257,7 +257,7 @@ position: relative; z-index: 1;
 }
 .mise__body {
   position: relative; z-index: 3;
-  width: calc(826 * var(--u));
+  width: min(calc(760 * var(--u)), 100% - 2 * var(--gutter));
   margin: 0 auto;
   padding-top: calc(485 * var(--u));
   padding-bottom: calc(384 * var(--u));
@@ -294,7 +294,23 @@ position: relative; z-index: 1;
   position: relative; z-index: 1;
   width: calc(826 * var(--u));
 }
-.chapter__body .lead { font-size: max(calc(56 * var(--u)), 1.4rem); }
+/* Textblock: zentrierte, schmale Spalte (Ref. Mobbin: Wise Story, Mews, Headspace) */
+.chapter__body, .mise__body {
+  align-items: center; text-align: center;
+  gap: max(calc(24 * var(--u)), 14px);
+}
+.chapter__body { width: min(calc(760 * var(--u)), 100% - 2 * var(--gutter)); }
+.chapter__body .lead, .mise__body .lead {
+  font-size: max(calc(48 * var(--u)), 1.35rem);
+  font-weight: 500; line-height: 1.12; letter-spacing: -0.01em;
+  text-transform: none; text-align: center; text-wrap: balance;
+  max-width: 22em;
+}
+.chapter__body p:not(.lead), .mise__body p:not(.lead), .mampf__copy {
+  font-size: max(calc(24 * var(--u)), 1rem);
+  line-height: 1.5; max-width: 34em;
+  text-wrap: pretty;
+}
 .chur__products {
   position: relative; z-index: 1;
   display: flex; justify-content: center; gap: calc(30 * var(--u));
@@ -322,8 +338,8 @@ position: relative; z-index: 1;
 .mampf__title { font-size: calc(240 * var(--u)); line-height: 0.9; }
 .mampf__copy {
   position: relative; z-index: 1;
-  width: calc(600 * var(--u));
-  font-size: max(var(--fs-body), 0.75rem); line-height: 1.25; text-align: center;
+  width: calc(640 * var(--u));
+  text-align: center;
 }
 
 /* ---------- Quiz ---------- */
