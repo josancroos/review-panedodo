@@ -326,8 +326,10 @@ position: relative; z-index: 1;
   width: 100%; max-width: none; height: auto;
 }
 .formen__title {
-  position: absolute; z-index: 2; left: 12%; top: 38%;
-  color: var(--c-white); pointer-events: none;
+  position: absolute; z-index: 2; left: 0; right: 0; top: 68%;
+  font-size: var(--fs-display); line-height: 0.95;
+  text-align: center; color: var(--c-blue); pointer-events: none;
+  transform: translateY(-50%) rotate(-4deg);
 }
 .backen__body {
   position: relative; z-index: 2;
@@ -595,7 +597,7 @@ position: relative; z-index: 1;
   .backen { padding: calc(256 * var(--u)) 0; }
   .backen > .title-unit { position: relative; top: auto; left: auto; }
   .backen__formen { width: 100%; margin-left: 0; }
-  .formen__title { left: 0; right: 0; top: 40%; text-align: center; }
+  .formen__title { top: 45%; }
   .backen__body { width: auto; margin: 0 var(--gutter); }
   .backen__body .btn { align-self: center; }
 
