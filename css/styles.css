@@ -533,7 +533,7 @@ position: relative; z-index: 1;
 .weg { --wave-overlap: calc(120 * var(--u)); }
 .mise { margin-top: calc(-1 * var(--wave-overlap)); }
 #chur { margin-top: calc(-1 * var(--wave-overlap)); z-index: 2; }
-#pause { margin-top: calc(-220 * var(--u)); z-index: 1; }
+#pause { margin-top: calc(-80 * var(--u)); z-index: 1; }
 
 /* Einstieg "Komm mit!" füllt mit der Tab-Leiste zusammen die ganze Bildschirmhöhe */
 .weg > .title-unit {
