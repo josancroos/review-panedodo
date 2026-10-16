@@ -32,7 +32,7 @@
 
 /* ---------- Tokens ---------- */
 :root {
-  --u: min(1px, calc(100vw / 1728));
+  --u: calc(100vw / 1728);
 
   --c-black: #000;
   --c-white: #fff;
@@ -52,9 +52,9 @@
   /* Typo-Skala (Figma: 300 / 100 / 56 / 22 / 14 / 12) */
   --fs-display: max(calc(300 * var(--u)), 3.6rem);
   --fs-eyebrow: max(calc(56 * var(--u)), 1.5rem);
-  --fs-body: clamp(1rem, calc(22 * var(--u)), 1.375rem);
-  --fs-small: 0.875rem;
-  --fs-tiny: 0.75rem;
+  --fs-body: max(1rem, calc(22 * var(--u)));
+  --fs-small: max(0.875rem, calc(14 * var(--u)));
+  --fs-tiny: max(0.75rem, calc(12 * var(--u)));
 
   --gutter: max(calc(30 * var(--u)), 16px);
   --section-gap: calc(256 * var(--u));
@@ -88,8 +88,6 @@ button, input, textarea { font: inherit; color: inherit; }
 
 .page {
   position: relative;
-  max-width: 1728px;
-  margin: 0 auto;
   overflow-x: clip;
   overflow-y: visible;
   display: flex;
@@ -421,7 +419,7 @@ position: relative; z-index: 1;
   transform: translateY(-4%);
 }
 .shop__grid {
-  width: min(1389px, 100% - 2 * var(--gutter));
+  width: min(calc(1389 * var(--u)), 100% - 2 * var(--gutter));
   display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
   column-gap: 30px; row-gap: max(calc(72 * var(--u)), 40px);
 }
@@ -446,7 +444,7 @@ position: relative; z-index: 1;
 /* ---------- FAQ ---------- */
 .faq { display: flex; flex-direction: column; align-items: center; gap: 32px; }
 .faq .title-unit { width: 100%; }
-.faq__container { width: min(1388px, 100% - 2 * var(--gutter)); display: flex; flex-direction: column; gap: 64px; }
+.faq__container { width: min(calc(1388 * var(--u)), 100% - 2 * var(--gutter)); display: flex; flex-direction: column; gap: 64px; }
 .faq__block { display: flex; flex-direction: column; gap: 16px; }
 .faq__heading {
   color: var(--c-yellow); text-align: center; text-transform: uppercase;
