@@ -388,6 +388,89 @@ position: relative; z-index: 1;
 .quiz__actions { display: flex; justify-content: flex-end; }
 
 
+/* ---------- Shop ---------- */
+.shop { position: relative; display: flex; flex-direction: column; align-items: center; gap: 32px; }
+.shop .title-unit { width: 100%; }
+.card__media--toggle {
+  display: block; width: 100%; aspect-ratio: 443 / 279;
+  padding: 0; border: 0; background: transparent; overflow: hidden;
+  cursor: pointer; text-align: left;
+}
+.card__media--toggle img {
+  position: absolute; inset: 0; height: 100%;
+  transition: opacity .25s ease;
+}
+.card__media--toggle .card__image-alt { opacity: 0; }
+.card__media--toggle:hover .card__image-alt,
+.card__media--toggle:focus-visible .card__image-alt,
+.card__media--toggle.is-alternate .card__image-alt { opacity: 1; }
+.stoerer {
+  position: fixed; z-index: 3;
+  left: calc(1119 * var(--u)); top: calc(100 * var(--u));
+  width: calc(576 * var(--u)); aspect-ratio: 576 / 290;
+  min-width: 220px;
+  background: url("../assets/stoerer.svg") center / 100% 100% no-repeat;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,.08));
+  display: flex; align-items: center; justify-content: center;
+}
+.stoerer p {
+  width: 35%;
+  font-family: var(--f-display); font-weight: 600;
+  font-size: max(calc(18 * var(--u)), 9px); line-height: 1.2;
+  color: var(--c-white); text-transform: uppercase; text-align: center;
+  transform: translateY(-4%);
+}
+.shop__grid {
+  width: min(1389px, 100% - 2 * var(--gutter));
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: 30px; row-gap: max(calc(72 * var(--u)), 40px);
+}
+.card { display: flex; flex-direction: column; gap: 24px; }
+.card__media { position: relative; }
+.card__media img { width: 100%; aspect-ratio: 443 / 279; object-fit: cover; }
+.badge {
+  position: absolute; top: 4.5%; right: 2.5%;
+  padding: 12px 24px; border-radius: 30px;
+  background: var(--c-black); color: var(--c-white);
+  font-size: var(--fs-body); line-height: 1;
+}
+.card__head { display: flex; justify-content: space-between; gap: 16px; margin-bottom: -15px; }
+.card__head h3 { font-size: var(--fs-body); font-weight: 500; }
+.card__price { white-space: nowrap; }
+.card__text {
+  padding: 15px 0; margin-top: 9px;
+  border-top: 1px solid var(--c-black);
+  font-size: var(--fs-small); line-height: 1.5;
+}
+
+/* ---------- FAQ ---------- */
+.faq { display: flex; flex-direction: column; align-items: center; gap: 32px; }
+.faq .title-unit { width: 100%; }
+.faq__container { width: min(1388px, 100% - 2 * var(--gutter)); display: flex; flex-direction: column; gap: 64px; }
+.faq__block { display: flex; flex-direction: column; gap: 16px; }
+.faq__heading {
+  color: var(--c-yellow); text-align: center; text-transform: uppercase;
+  font-size: var(--fs-eyebrow); line-height: .9; font-weight: 500;
+  margin-bottom: 16px;
+}
+.faq__item { border-bottom: 1px solid var(--c-black); padding: 15px 0; }
+.faq__item summary {
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;
+  list-style: none; cursor: pointer;
+}
+.faq__item summary::-webkit-details-marker { display: none; }
+.faq__item summary::after {
+  content: ""; flex: none; width: 16px; height: 16px; margin-top: .1em;
+  background:
+    linear-gradient(currentColor, currentColor) center / 12px 1.5px no-repeat,
+    linear-gradient(currentColor, currentColor) center / 1.5px 12px no-repeat;
+  transition: transform .2s ease;
+}
+.faq__item[open] summary::after {
+  background: linear-gradient(currentColor, currentColor) center / 9px 1.5px no-repeat;
+}
+.faq__item p { margin-top: 24px; max-width: 60em; }
+
 /* ---------- Kontakt + Footer (grüne Fläche) ---------- */
 .green-zone {
   position: relative;
@@ -462,6 +545,7 @@ position: relative; z-index: 1;
    Responsive
    ========================================================= */
 @media (max-width: 1100px) {
+  .shop__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 800px) {
@@ -558,6 +642,7 @@ position: relative; z-index: 1;
 }
 
 @media (max-width: 560px) {
+  .shop__grid { grid-template-columns: 1fr; }
   .kontakt__form { width: 70%; }
   .field input, .field textarea { height: 40px; padding: 10px 0; font-size: 0.9rem; }
 }
