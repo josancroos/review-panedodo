@@ -40,19 +40,6 @@
   window.addEventListener('resize', () => moveIndicator(document.querySelector('.tabs__link.is-active')));
   requestAnimationFrame(() => moveIndicator(links[0]));
 
-  document.querySelectorAll('.card__media--toggle').forEach(button => {
-    function toggleImage() {
-      const active = button.classList.toggle('is-alternate');
-      button.setAttribute('aria-pressed', String(active));
-    }
-    button.addEventListener('pointerup', event => {
-      if (event.pointerType !== 'mouse') toggleImage();
-    });
-    button.addEventListener('click', event => {
-      if (event.detail === 0) toggleImage();
-    });
-  });
-
   /* ---------- Quiz ---------- */
   const QUESTIONS = [
     { q: '«Harte Schale, weicher Kern», trifft das auf dich zu?', a: [
