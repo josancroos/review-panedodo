@@ -256,3 +256,43 @@
   window.addEventListener('resize', onScroll);
   update();
 })();
+
+/* Smooth Scrolling: träge Wheel-/Touch-Bewegung, Anker-Sprünge und weiches Einrasten an Kapitelanfängen */
+(() => {
+  if (!window.Lenis || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const lenis = new Lenis({ lerp: 0.085, wheelMultiplier: 0.9, smoothWheel: true });
+  window.__lenis = lenis;
+  const raf = t => { lenis.raf(t); requestAnimationFrame(raf); };
+  requestAnimationFrame(raf);
+
+  const offsetFor = el => -(parseFloat(getComputedStyle(el).scrollMarginTop) || 0);
+
+  // Anker (Tabs, Logo, Nach-oben, Footer-Links) gleiten statt zu springen
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a || a.getAttribute('href') === '#') return;
+    const target = a.getAttribute('href') === '#top' ? 0 : document.querySelector(a.getAttribute('href'));
+    if (target === null) return;
+    e.preventDefault();
+    lenis.scrollTo(target, { offset: target === 0 ? 0 : offsetFor(target), duration: 1.3, easing: t => 1 - Math.pow(1 - t, 4) });
+    history.pushState(null, '', a.getAttribute('href'));
+  });
+
+  // Sanftes Einrasten (wie scroll-snap proximity): kurz nach dem Scrollen zum nächsten Kapitelanfang, wenn nah genug
+  const snapTargets = () => [...document.querySelectorAll('.hero, .weg > .title-unit, .weg > .step, .quiz')];
+  let timer;
+  lenis.on('scroll', () => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      if (lenis.isScrolling && Math.abs(lenis.velocity) > 0.5) return;
+      const y = window.scrollY, vh = window.innerHeight;
+      let best = null, dist = Infinity;
+      snapTargets().forEach(el => {
+        const top = el.getBoundingClientRect().top + y + offsetFor(el);
+        const d = Math.abs(top - y);
+        if (d < dist) { dist = d; best = top; }
+      });
+      if (best !== null && dist > 4 && dist < vh * 0.15) lenis.scrollTo(best, { duration: 0.8, easing: t => 1 - Math.pow(1 - t, 3) });
+    }, 140);
+  });
+})();

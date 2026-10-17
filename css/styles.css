@@ -826,3 +826,10 @@ html:not(.js) .kontakt__pin { position: relative; }
   .kontakt__title { top: calc(80px + 2svh); }
 }
 @media (prefers-reduced-motion: reduce) { .js .kontakt { height: auto; --flap: 1; --rise: 1; --form: 1; --drop: 0; } .js .kontakt__pin { position: relative; } }
+
+/* ---------- Smooth Scrolling (Lenis) ---------- */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+/* Einrasten übernimmt Lenis weich (siehe main.js), natives Snap würde dagegen arbeiten */
+html.lenis { scroll-snap-type: none; }
