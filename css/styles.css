@@ -833,3 +833,18 @@ html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-stopped { overflow: hidden; }
 /* Einrasten übernimmt Lenis weich (siehe main.js), natives Snap würde dagegen arbeiten */
 html.lenis { scroll-snap-type: none; }
+
+/* ---------- Hero: Komposition skaliert mit Breite UND Höhe, bleibt mittig im Viewport (Desktop) ---------- */
+@media (min-width: 801px) {
+  .hero {
+    --hu: min(calc(100vw / 1728), calc(100svh / 1240));
+    --ox: calc((100vw - 1728 * var(--hu)) / 2);
+    --oy: calc((100svh - 1240 * var(--hu)) / 2);
+    --fs-display: max(calc(300 * var(--hu)), 3.6rem);
+    --fs-eyebrow: max(calc(56 * var(--hu)), 1.5rem);
+    min-height: 100vh; height: 100vh; min-height: 100svh; height: 100svh;
+    padding: calc(var(--oy) + max(calc(210 * var(--hu)), 90px)) 0 0;
+  }
+  .hero__star { left: calc(var(--ox) + 30 * var(--hu)); top: calc(var(--oy) + 100 * var(--hu)); width: calc(1668 * var(--hu)); }
+  .hero__baguette { left: calc(var(--ox) + 342 * var(--hu)); top: calc(var(--oy) + 249 * var(--hu)); width: calc(1044 * var(--hu)); }
+}
