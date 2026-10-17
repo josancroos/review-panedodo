@@ -146,3 +146,14 @@
     onScroll();
   }
 })();
+
+/* Kapitel-Bilder sanft einblenden */
+(() => {
+  const frames = document.querySelectorAll('.frame.reveal');
+  if (!frames.length || !('IntersectionObserver' in window)) return;
+  document.documentElement.classList.add('js');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  frames.forEach((f) => io.observe(f));
+})();
