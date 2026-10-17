@@ -529,10 +529,6 @@ position: relative; z-index: 1;
 
 /* Keine weissen Streifen zwischen Kapiteln: Wellen-Hintergründe überlappen die Nachbarn,
    deren Farbe scheint durch die transparenten Wellenränder. */
-.weg { --wave-overlap: calc(120 * var(--u)); }
-.mise { margin-top: calc(-1 * var(--wave-overlap)); }
-#chur { margin-top: calc(-1 * var(--wave-overlap)); z-index: 2; }
-#pause { margin-top: calc(-80 * var(--u)); z-index: 1; }
 
 /* Einstieg "Komm mit!" füllt mit der Tab-Leiste zusammen die ganze Bildschirmhöhe */
 .weg > .title-unit {
@@ -692,3 +688,20 @@ html { scroll-snap-type: y proximity; }
 .hero, .weg > .title-unit, .step, .quiz, .kontakt { scroll-snap-align: start; }
 .step { scroll-margin-top: max(calc(70 * var(--u)), 56px); }
 @media (prefers-reduced-motion: reduce) { html { scroll-snap-type: none; } }
+
+/* ---------- Kapitel-Übergänge: einheitlich handgeschnittene Kanten, jede anders ---------- */
+.weg { --cut: max(calc(90 * var(--u)), 34px); }
+.weg > .step { margin-top: calc(-1 * var(--cut)); z-index: auto; }
+.weg > #anfang { margin-top: 0; }
+.weg > .chapter { padding-top: calc(160 * var(--u) + var(--cut)); }
+.weg > .mise { padding-top: calc(160 * var(--u) + var(--cut)); background: var(--c-lavender); }
+.weg > .mise .mise__bg, .weg > .chapter .chapter__bg { display: none; }
+.weg > .chapter--chur { background-color: var(--c-yellow); }
+.weg > .mampf { padding-top: var(--cut); }
+@media (max-width: 800px) { .weg > .mise { padding-top: calc(28px + var(--cut)); } }
+.weg > #anfang { clip-path: polygon(0.0% calc(var(--cut) * 0.54), 19.0% calc(var(--cut) * 0.89), 45.2% calc(var(--cut) * 0.60), 61.4% calc(var(--cut) * 0.06), 78.1% calc(var(--cut) * 0.88), 85.5% calc(var(--cut) * 0.33), 100.0% calc(var(--cut) * 0.00), 100% 100%, 0 100%); }
+.weg > #gfbrot { clip-path: polygon(0.0% calc(var(--cut) * 0.20), 12.3% calc(var(--cut) * 0.90), 18.3% calc(var(--cut) * 0.12), 23.9% calc(var(--cut) * 0.52), 29.5% calc(var(--cut) * 0.17), 44.9% calc(var(--cut) * 0.97), 62.8% calc(var(--cut) * 0.17), 95.2% calc(var(--cut) * 0.51), 100.0% calc(var(--cut) * 0.81), 100% 100%, 0 100%); }
+.weg > #selbst { clip-path: polygon(0.0% calc(var(--cut) * 0.10), 30.5% calc(var(--cut) * 0.86), 47.4% calc(var(--cut) * 0.58), 75.7% calc(var(--cut) * 0.20), 84.4% calc(var(--cut) * 0.96), 93.1% calc(var(--cut) * 0.32), 100.0% calc(var(--cut) * 0.92), 100% 100%, 0 100%); }
+.weg > #chur { clip-path: polygon(0.0% calc(var(--cut) * 0.69), 14.5% calc(var(--cut) * 0.99), 23.8% calc(var(--cut) * 0.47), 69.8% calc(var(--cut) * 0.78), 92.6% calc(var(--cut) * 0.49), 100.0% calc(var(--cut) * 0.77), 100% 100%, 0 100%); }
+.weg > #pause { clip-path: polygon(0.0% calc(var(--cut) * 0.03), 22.1% calc(var(--cut) * 0.67), 67.7% calc(var(--cut) * 0.37), 72.9% calc(var(--cut) * 0.79), 79.9% calc(var(--cut) * 0.10), 100.0% calc(var(--cut) * 0.39), 100% 100%, 0 100%); }
+.weg > #zukunft { clip-path: polygon(0.0% calc(var(--cut) * 0.03), 22.9% calc(var(--cut) * 0.32), 40.0% calc(var(--cut) * 0.83), 51.6% calc(var(--cut) * 0.14), 58.4% calc(var(--cut) * 0.92), 86.0% calc(var(--cut) * 0.53), 100.0% calc(var(--cut) * 0.97), 100% 100%, 0 100%); }
