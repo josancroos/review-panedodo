@@ -5,7 +5,7 @@
   const track = document.querySelector('.tabs__track');
   const links = [...document.querySelectorAll('.tabs__link')];
   const indicator = document.querySelector('.tabs__indicator');
-  const VARIANTS = { '0': 'Alt', a: 'A Pille', b: 'B Editorial', c: 'C Punkte', d: 'D Kompakt' };
+  const VARIANTS = { '0': 'Alt', a: 'A Pille', b: 'B Editorial', c: 'C Punkte', d: 'D Kompakt', e: 'E Bütten' };
   const pad2 = n => String(n).padStart(2, '0');
   let current = links[0];
 
