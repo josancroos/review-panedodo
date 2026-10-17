@@ -493,9 +493,9 @@ position: relative; z-index: 1;
   .chapter__title { font-size: 11vw; }
   .chapter__body { width: auto; margin: 0 var(--gutter); }
 
-  .mampf__eyebrow { font-size: clamp(0.8rem, 3.4vw, 1.4rem); }
+  .mampf__eyebrow { font-size: clamp(0.9rem, 4vw, 1.4rem); }
   .mampf__title { font-size: 14vw; }
-  .mampf__copy { width: 62%; font-size: 0.7rem; }
+  .mampf__copy { width: min(100% - 2 * var(--gutter), 34em); font-size: 1rem; }
 
   .quiz__bg { top: 18%; height: 70%; }
   .quiz__paper {
@@ -558,14 +558,12 @@ position: relative; z-index: 1;
 .frame--deckle.frame--alt { transform: rotate(1.2deg); }
 .mampf { height: auto; min-height: 0; background: none; display: flex; flex-direction: column; align-items: center; padding-bottom: calc(120 * var(--u)); }
 .mampf__stage {
-  width: 100%; min-height: 100vh; min-height: 100svh; height: calc(865 * var(--u));
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: calc(40 * var(--u));
-  background: url("../assets/mampf.webp") center / contain no-repeat;
+  width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: calc(40 * var(--u)); padding: calc(160 * var(--u)) var(--gutter) 0;
 }
 .mampf .frame { margin-top: calc(24 * var(--u)); }
 @media (max-width: 800px) {
-  .mampf__stage { height: auto; min-height: 0; aspect-ratio: 1728 / 907; gap: 2vw; }
+  .mampf__stage { gap: 4vw; padding-top: 96px; }
   .mampf { padding-bottom: 48px; }
 }
 
