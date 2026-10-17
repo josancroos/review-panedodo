@@ -493,8 +493,6 @@ position: relative; z-index: 1;
   .chapter__title { font-size: 11vw; }
   .chapter__body { width: auto; margin: 0 var(--gutter); }
 
-  .mampf { height: auto; aspect-ratio: 1728 / 907; }
-  .mampf { gap: 2vw; }
   .mampf__eyebrow { font-size: clamp(0.8rem, 3.4vw, 1.4rem); }
   .mampf__title { font-size: 14vw; }
   .mampf__copy { width: 62%; font-size: 0.7rem; }
@@ -558,8 +556,18 @@ position: relative; z-index: 1;
 }
 .frame--deckle { transform: rotate(-1deg); }
 .frame--deckle.frame--alt { transform: rotate(1.2deg); }
-.mampf { height: auto; min-height: 100svh; padding: calc(160 * var(--u)) var(--gutter); background-size: cover; }
+.mampf { height: auto; min-height: 0; background: none; display: flex; flex-direction: column; align-items: center; padding-bottom: calc(120 * var(--u)); }
+.mampf__stage {
+  width: 100%; min-height: 100vh; min-height: 100svh; height: calc(865 * var(--u));
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: calc(40 * var(--u));
+  background: url("../assets/mampf.webp") center / contain no-repeat;
+}
 .mampf .frame { margin-top: calc(24 * var(--u)); }
+@media (max-width: 800px) {
+  .mampf__stage { height: auto; min-height: 0; aspect-ratio: 1728 / 907; gap: 2vw; }
+  .mampf { padding-bottom: 48px; }
+}
 
 @media (max-width: 800px) {
   .frame--deckle { padding: 16px; }
