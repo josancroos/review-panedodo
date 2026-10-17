@@ -882,3 +882,8 @@ html.lenis { scroll-snap-type: none; }
   .kontakt__title { opacity: calc(1 - var(--drop) * .25); transform: none; }
   .footer { padding-top: 24vw; }
 }
+
+/* Abstand Brief → Footer straffen */
+.green-zone { gap: 0; }
+.footer { padding-top: calc(110 * var(--u)); }
+@media (max-width: 800px) { .footer { padding-top: 56px; } }
