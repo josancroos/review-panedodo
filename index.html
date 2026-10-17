@@ -154,25 +154,33 @@
   <!-- ============ KONTAKT + FOOTER ============ -->
   <div class="green-zone">
     <section class="kontakt" id="kontakt" aria-labelledby="kontakt-title">
-      <div class="title-unit">
-        <p class="eyebrow">Kontakt</p>
-        <h2 id="kontakt-title" class="display">Post für<br>mich</h2>
-      </div>
-      <div class="kontakt__stage">
-        <picture class="kontakt__envelope" aria-hidden="true">
-          <source srcset="assets/briefmarke.webp" media="(max-width: 800px)">
-          <img src="assets/kontakt.webp" alt="" width="1214" height="1350">
-        </picture>
-        <!-- TODO: action auf den eigenen Formular-Endpunkt setzen -->
-        <form class="kontakt__form" action="#" method="post">
-          <div class="field-row">
-            <label class="field"><span class="sr-only">Name</span><input type="text" name="name" placeholder="Name" autocomplete="name"></label>
-            <label class="field"><span class="sr-only">E-Mail (Pflichtfeld)</span><input type="email" name="email" placeholder="E-Mail*" autocomplete="email" required></label>
+      <div class="kontakt__pin">
+        <div class="title-unit kontakt__title">
+          <p class="eyebrow">Kontakt</p>
+          <h2 id="kontakt-title" class="display">Post für<br>mich</h2>
+        </div>
+        <div class="env" data-env>
+          <div class="env__back" aria-hidden="true"></div>
+          <div class="env__flap" aria-hidden="true">
+            <div class="env__face env__face--out"><img class="env__seal" src="assets/post/seal.webp" alt="" width="700" height="700"></div>
+            <div class="env__face env__face--in"></div>
           </div>
-          <label class="field"><span class="sr-only">Telefonnummer</span><input type="tel" name="phone" placeholder="Telefonnummer" autocomplete="tel"></label>
-          <label class="field"><span class="sr-only">Kommentar</span><textarea name="message" rows="1" placeholder="Kommentar"></textarea></label>
-          <button class="btn btn--blue" type="submit">Senden</button>
-        </form>
+          <!-- TODO: action auf den eigenen Formular-Endpunkt setzen -->
+          <form class="env__letter" action="#" method="post">
+            <p class="env__letter-title">Schreib mir</p>
+            <div class="field-row">
+              <label class="field"><span class="sr-only">Name</span><input type="text" name="name" placeholder="Name" autocomplete="name"></label>
+              <label class="field"><span class="sr-only">E-Mail (Pflichtfeld)</span><input type="email" name="email" placeholder="E-Mail*" autocomplete="email" required></label>
+            </div>
+            <label class="field"><span class="sr-only">Telefonnummer</span><input type="tel" name="phone" placeholder="Telefonnummer" autocomplete="tel"></label>
+            <label class="field"><span class="sr-only">Kommentar</span><textarea name="message" rows="2" placeholder="Kommentar"></textarea></label>
+            <button class="btn btn--blue" type="submit">Senden</button>
+          </form>
+          <div class="env__front" aria-hidden="true">
+            <div class="env__front-shape"></div>
+            <img class="env__stamp" src="assets/post/stamp.webp" alt="" width="560" height="700">
+          </div>
+        </div>
       </div>
     </section>
 

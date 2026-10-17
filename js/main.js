@@ -222,3 +222,37 @@
   }, { threshold: 0.15 });
   frames.forEach((f) => io.observe(f));
 })();
+
+/* Kontakt: Brief öffnet sich beim Scrollen (Klappe → Brief steigt auf → Formular erscheint) */
+(() => {
+  const section = document.querySelector('.kontakt');
+  const env = document.querySelector('[data-env]');
+  if (!section || !env || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const flap = env.querySelector('.env__flap');
+  const letter = env.querySelector('.env__letter');
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const range = (p, a, b) => clamp((p - a) / (b - a));
+  const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  let ticking = false;
+
+  function update() {
+    ticking = false;
+    const r = section.getBoundingClientRect();
+    const p = clamp(-r.top / (r.height - window.innerHeight));
+    const f = ease(range(p, .05, .30));
+    const rise = ease(range(p, .28, .58));
+    const form = ease(range(p, .56, .78));
+    const drop = ease(range(p, .55, .85));
+    section.style.setProperty('--flap', f.toFixed(4));
+    section.style.setProperty('--rise', rise.toFixed(4));
+    section.style.setProperty('--form', form.toFixed(4));
+    section.style.setProperty('--drop', drop.toFixed(4));
+    flap.dataset.side = f > .5 ? 'back' : 'front';
+    // Formular erst bedienbar, wenn der Brief offen ist
+    if (form > .85) letter.removeAttribute('inert'); else letter.setAttribute('inert', '');
+  }
+  const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  update();
+})();
