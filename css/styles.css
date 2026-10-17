@@ -184,14 +184,21 @@ button, input, textarea { font: inherit; color: inherit; }
   width: max(calc(81 * var(--u)), 52px);
 }
 .to-top {
-  position: fixed; z-index: 30;
+  position: fixed; z-index: 30; isolation: isolate;
   right: var(--gutter); bottom: var(--gutter);
-  width: 64px; height: 48px; border-radius: 30px;
+  width: 72px; height: 54px; border-radius: 0;
   display: grid; place-items: center;
-  background: var(--c-pink); color: var(--c-white);
+  background: none; color: var(--c-white);
   opacity: 0; pointer-events: none; transform: translateY(10px);
   transition: opacity .2s ease, transform .2s ease;
 }
+.to-top::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; background: var(--c-pink);
+  -webkit-mask: url("../assets/btn-blob.svg") center / 100% 100% no-repeat;
+  mask: url("../assets/btn-blob.svg") center / 100% 100% no-repeat;
+  transition: transform .35s cubic-bezier(.3,.8,.3,1);
+}
+.to-top:hover::before { transform: rotate(-4deg) scale(1.08, 1.12); }
 .to-top.is-visible { opacity: 1; pointer-events: auto; transform: none; }
 
 /* ---------- Hero ---------- */
