@@ -42,6 +42,11 @@
     }
     indicator.style.width = `${width}px`;
     indicator.style.transform = `translateX(${left}px)`;
+    const CLIPS = [
+      'polygon(0 16%, 100% 0, 96% 100%, 4% 84%)', 'polygon(3% 0, 100% 10%, 97% 90%, 0 100%)',
+      'polygon(0 6%, 96% 0, 100% 94%, 5% 100%)', 'polygon(4% 10%, 100% 0, 95% 100%, 0 90%)',
+      'polygon(0 0, 97% 12%, 100% 100%, 3% 88%)', 'polygon(2% 12%, 100% 0, 98% 88%, 0 100%)'];
+    indicator.style.setProperty('--ind-clip', CLIPS[links.indexOf(link) % CLIPS.length]);
     indicator.style.setProperty('--ind-c', getComputedStyle(link.parentElement).getPropertyValue('--tab-c'));
     tabs.style.setProperty('--tab-c', getComputedStyle(link.parentElement).getPropertyValue('--tab-c'));
     // aktiven Eintrag in der scrollbaren Leiste zentrieren (Mobile)
