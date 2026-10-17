@@ -686,3 +686,9 @@ position: relative; z-index: 1;
 }
 .navpick button { border: 0; background: transparent; color: #fff; padding: 7px 10px; border-radius: 999px; font: inherit; cursor: pointer; }
 .navpick button[aria-pressed="true"] { background: #fff; color: #111; }
+
+/* ---------- Scroll-Snap: jedes Kapitel rastet beim Scrollen ein ---------- */
+html { scroll-snap-type: y proximity; }
+.hero, .weg > .title-unit, .step, .quiz, .kontakt { scroll-snap-align: start; }
+.step { scroll-margin-top: max(calc(70 * var(--u)), 56px); }
+@media (prefers-reduced-motion: reduce) { html { scroll-snap-type: none; } }
