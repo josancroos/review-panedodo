@@ -149,19 +149,33 @@ button, input, textarea { font: inherit; color: inherit; }
 .legal-page__note { margin-top: 32px; }
 
 /* ---------- Buttons ---------- */
+/* Buttons: organische Blob-Form aus Figma (Expi, Node 94:266); Farbe über --btn-bg, Form als Maske */
 .btn {
+  --btn-bg: var(--c-black); --btn-fg: var(--c-white);
+  position: relative; isolation: isolate;
   display: inline-flex; align-items: center; justify-content: center;
-  padding: 16px 32px;
-  border: 0; border-radius: 30px;
+  padding: 22px 52px;
+  border: 0; border-radius: 0; background: none; color: var(--btn-fg);
   font-size: var(--fs-body); line-height: 1;
   text-decoration: none; cursor: pointer;
-  transition: transform .15s ease, filter .15s ease, opacity .15s ease;
+  transition: transform .2s cubic-bezier(.3,.8,.3,1), opacity .15s ease;
 }
-.btn:hover { transform: translateY(-2px); filter: brightness(1.05); }
+.btn::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: var(--btn-bg);
+  -webkit-mask: url("../assets/btn-blob.svg") center / 100% 100% no-repeat;
+  mask: url("../assets/btn-blob.svg") center / 100% 100% no-repeat;
+  transition: transform .35s cubic-bezier(.3,.8,.3,1), filter .2s;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn:hover::before { transform: rotate(-2.5deg) scale(1.05, 1.08); filter: brightness(1.06); }
+.btn:active::before { transform: scale(.97); }
+.btn:focus-visible { outline: 2px solid var(--c-black); outline-offset: 4px; border-radius: 40px; }
 .btn:disabled { opacity: .35; cursor: not-allowed; transform: none; }
-.btn--yellow { background: var(--c-yellow); color: var(--c-black); }
-.btn--black  { background: var(--c-black); color: var(--c-white); }
-.btn--blue   { background: var(--c-blue); color: var(--c-black); }
+.btn:disabled::before { transform: none; }
+.btn--yellow { --btn-bg: var(--c-yellow); --btn-fg: var(--c-black); }
+.btn--black  { --btn-bg: var(--c-black); --btn-fg: var(--c-white); }
+.btn--blue   { --btn-bg: var(--c-blue); --btn-fg: var(--c-black); }
 
 /* ---------- Logo + To-Top ---------- */
 .logo {
@@ -462,7 +476,8 @@ position: relative; z-index: 1;
   .display { white-space: normal; overflow-wrap: anywhere; }
   .step-title { font-size: 11vw; }
 
-  .btn, .answer { padding: 12px 24px; }
+  .answer { padding: 12px 24px; }
+  .btn { padding: 16px 38px; }
   .answer { font-size: var(--fs-body); }
 
   .hero { min-height: 100vh; min-height: 100svh; padding-top: 250px; padding-bottom: 38vw; }
@@ -780,7 +795,7 @@ html:not(.js) .kontakt__pin { position: relative; }
 .env__letter > .field, .env__letter .field-row { margin-bottom: 0; }
 .env__letter .field input, .env__letter .field textarea { height: calc(var(--W) * .068); min-height: 40px; padding: 10px 0; font-size: max(1rem, calc(var(--W) * .026)); }
 .env__letter .field textarea { height: calc(var(--W) * .085); resize: none; }
-.env__letter .btn { margin-top: calc(var(--W) * .012); padding: calc(var(--W) * .01) calc(var(--W) * .04); font-size: max(1rem, calc(var(--W) * .022)); }
+.env__letter .btn { margin-top: calc(var(--W) * .012); padding: calc(var(--W) * .016) calc(var(--W) * .055); font-size: max(1rem, calc(var(--W) * .022)); }
 /* Vordere Tasche mit V-Ausschnitt */
 .env__front { inset: 0; z-index: 4; pointer-events: none; filter: drop-shadow(0 -3px 5px rgb(0 0 0 / .28)); }
 .env__front-shape {
