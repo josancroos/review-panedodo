@@ -837,9 +837,9 @@ html.lenis { scroll-snap-type: none; }
 /* ---------- Hero: Komposition skaliert mit Breite UND Höhe, bleibt mittig im Viewport (Desktop) ---------- */
 @media (min-width: 801px) {
   .hero {
-    --hu: min(calc(100vw / 1728), calc(100svh / 1240));
+    --hu: min(calc(100vw / 1728), calc(100svh / 1100));
     --ox: calc((100vw - 1728 * var(--hu)) / 2);
-    --oy: calc((100svh - 1240 * var(--hu)) / 2);
+    --oy: calc((100svh - 1000 * var(--hu)) / 2 - 100 * var(--hu));
     --fs-display: max(calc(300 * var(--hu)), 3.6rem);
     --fs-eyebrow: max(calc(56 * var(--hu)), 1.5rem);
     min-height: 100vh; height: 100vh; min-height: 100svh; height: 100svh;
