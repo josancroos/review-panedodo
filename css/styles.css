@@ -215,20 +215,21 @@ position: relative; z-index: 1;
   padding: var(--tabs-padding-top) 0 0;
   background: transparent;
 }
+.tabs__track { position: relative; overflow-x: auto; scrollbar-width: none; }
+.tabs__track::-webkit-scrollbar { display: none; }
 .tabs__list {
   display: flex; justify-content: space-between; gap: 15px;
-  padding-bottom: 12px;
+  padding-bottom: 12px; min-width: max-content; width: 100%;
   border-bottom: 1px solid var(--c-black);
   font-size: var(--fs-small); line-height: 1.5;
-  overflow-x: auto; scrollbar-width: none;
 }
-.tabs__list::-webkit-scrollbar { display: none; }
-.tabs__link { text-decoration: none; white-space: nowrap; font-weight: 500; }
+.tabs__link { text-decoration: none; white-space: nowrap; font-weight: 500; position: relative; z-index: 1; }
 .tabs__link.is-active { font-weight: 900; }
+.tabs__num, .tabs__dot, .tabs__compact { display: none; }
 .tabs__indicator {
-  position: absolute; left: 0; bottom: -1px;
+  position: absolute; left: 0; bottom: 0; z-index: 0;
   width: 170px; height: 3px; background: var(--c-black);
-  transition: transform .3s ease, width .3s ease;
+  transition: transform .35s cubic-bezier(.3,.8,.3,1), width .35s cubic-bezier(.3,.8,.3,1), background-color .35s;
 }
 
 .step { position: relative; }
@@ -575,3 +576,87 @@ position: relative; z-index: 1;
 .js .frame.reveal { opacity: 0; translate: 0 40px; transition: opacity .9s ease, translate .9s ease; }
 .js .frame.reveal.is-in { opacity: 1; translate: 0 0; }
 @media (prefers-reduced-motion: reduce) { .js .frame.reveal { opacity: 1; translate: none; transition: none; } }
+
+/* ---------- Navigation-Varianten (data-nav auf .tabs) ---------- */
+/* A: schwebende Pille, farbige Kapitel-Füllung (Ref. mymind, Superpower) */
+.tabs[data-nav="a"] .tabs__track,
+.tabs[data-nav="c"] .tabs__track,
+.tabs[data-nav="d"] .tabs__track {
+  width: max-content; max-width: 100%; margin: 0 auto; padding: 6px;
+  background: #fff; border: 1px solid var(--c-black); border-radius: 999px;
+  box-shadow: 0 calc(10 * var(--u)) calc(30 * var(--u)) rgb(0 0 0 / .14);
+}
+.tabs[data-nav="a"] .tabs__list,
+.tabs[data-nav="c"] .tabs__list { border: 0; padding: 0; gap: 4px; width: auto; }
+.tabs[data-nav="a"] .tabs__link,
+.tabs[data-nav="c"] .tabs__link {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 18px; border-radius: 999px;
+}
+.tabs[data-nav="a"] .tabs__link.is-active,
+.tabs[data-nav="c"] .tabs__link.is-active { font-weight: 500; }
+.tabs[data-nav="a"] .tabs__num { display: inline; font-size: var(--fs-tiny); opacity: .55; font-variant-numeric: tabular-nums; }
+.tabs[data-nav="a"] .tabs__dot,
+.tabs[data-nav="c"] .tabs__dot {
+  display: inline-block; width: 10px; height: 10px; border-radius: 50%;
+  background: var(--tab-c); border: 1px solid var(--c-black); flex: none;
+}
+.tabs[data-nav="a"] .tabs__indicator,
+.tabs[data-nav="c"] .tabs__indicator {
+  top: 6px; bottom: 6px; height: auto; border-radius: 999px;
+  background: var(--ind-c, var(--c-green)); border: 1px solid var(--c-black);
+}
+
+/* B: Editorial, Kapitelnummer über dem Namen, kräftiger Strich (Ref. AI in Design Report, NYT) */
+.tabs[data-nav="b"] .tabs__list { padding-bottom: 14px; gap: 28px; }
+.tabs[data-nav="b"] .tabs__link {
+  display: flex; flex-direction: column; gap: 2px; font-weight: 500;
+  opacity: .5; transition: opacity .25s;
+}
+.tabs[data-nav="b"] .tabs__link.is-active,
+.tabs[data-nav="b"] .tabs__link:hover { opacity: 1; font-weight: 500; }
+.tabs[data-nav="b"] .tabs__num { display: block; font-size: var(--fs-tiny); letter-spacing: .08em; font-variant-numeric: tabular-nums; }
+.tabs[data-nav="b"] .tabs__indicator { height: 5px; }
+
+/* C: nur Farbpunkte, aktives Kapitel klappt den Namen auf (Ref. mymind) */
+.tabs[data-nav="c"] .tabs__link { padding: 10px 12px; gap: 0; }
+.tabs[data-nav="c"] .tabs__label {
+  display: inline-block; max-width: 0; opacity: 0; overflow: hidden;
+  transition: max-width .4s cubic-bezier(.3,.8,.3,1), opacity .25s, margin .4s;
+}
+.tabs[data-nav="c"] .tabs__link.is-active { padding-right: 18px; }
+.tabs[data-nav="c"] .tabs__link.is-active .tabs__label { max-width: 14em; opacity: 1; margin-left: 8px; }
+
+/* D: kompakt, "03 / 06" mit Pfeilen und Segment-Fortschritt (auch gut für Mobile) */
+.tabs[data-nav="d"] .tabs__list, .tabs[data-nav="d"] .tabs__indicator { display: none; }
+.tabs[data-nav="d"] .tabs__track { overflow: hidden; padding: 6px 6px 12px; position: relative; }
+.tabs[data-nav="d"] .tabs__compact {
+  display: flex; align-items: center; gap: 14px; font-size: var(--fs-small); line-height: 1.5;
+}
+.tabs__compact button {
+  width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--c-black);
+  background: transparent; color: var(--c-black); font: inherit; cursor: pointer; line-height: 1;
+}
+.tabs__compact button:hover { background: var(--tab-c, var(--c-green)); }
+.tabs__compact-label { min-width: 15em; text-align: center; font-weight: 500; }
+.tabs__compact-label b { font-variant-numeric: tabular-nums; margin-right: 8px; }
+.tabs__bars { position: absolute; left: 22px; right: 22px; bottom: 5px; display: none; gap: 4px; }
+.tabs__bars i { flex: 1; height: 3px; border-radius: 2px; background: rgb(0 0 0 / .15); transition: background .3s; }
+.tabs__bars i.is-done { background: var(--c-black); }
+.tabs[data-nav="d"] .tabs__bars { display: flex; }
+
+@media (max-width: 800px) {
+  .tabs[data-nav="a"] .tabs__track, .tabs[data-nav="c"] .tabs__track { max-width: calc(100vw - 2 * var(--gutter)); margin: 0; }
+  .tabs[data-nav="a"] .tabs__link { padding: 8px 14px; }
+  .tabs[data-nav="d"] .tabs__compact-label { min-width: 0; flex: 1; }
+  .tabs[data-nav="d"] .tabs__track { width: 100%; }
+}
+
+/* Varianten-Umschalter (nur zum Testen, vor Livegang entfernen) */
+.navpick {
+  position: fixed; left: 12px; bottom: 12px; z-index: 100;
+  display: flex; align-items: center; gap: 4px; padding: 6px 8px;
+  background: #111; color: #fff; border-radius: 999px; font: 500 12px/1 var(--f-body);
+}
+.navpick button { border: 0; background: transparent; color: #fff; padding: 7px 10px; border-radius: 999px; font: inherit; cursor: pointer; }
+.navpick button[aria-pressed="true"] { background: #fff; color: #111; }

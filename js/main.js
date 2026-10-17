@@ -2,25 +2,64 @@
 (() => {
   /* ---------- Tabs (Panedodo-Weg) ---------- */
   const tabs = document.querySelector('.tabs');
+  const track = document.querySelector('.tabs__track');
   const links = [...document.querySelectorAll('.tabs__link')];
   const indicator = document.querySelector('.tabs__indicator');
+  const VARIANTS = { '0': 'Alt', a: 'A Pille', b: 'B Editorial', c: 'C Punkte', d: 'D Kompakt' };
+  const pad2 = n => String(n).padStart(2, '0');
+  let current = links[0];
+
+  // Variante D: kompakte Leiste mit Pfeilen und Segment-Fortschritt
+  let compactLabel;
+  const bars = [];
+  if (tabs && links.length) {
+    const compact = document.createElement('div');
+    compact.className = 'tabs__compact';
+    compact.innerHTML = '<button type="button" aria-label="Voriges Kapitel">←</button>' +
+      '<span class="tabs__compact-label" aria-live="polite"></span>' +
+      '<button type="button" aria-label="Nächstes Kapitel">→</button>';
+    const barWrap = document.createElement('div');
+    barWrap.className = 'tabs__bars';
+    links.forEach(() => { const i = document.createElement('i'); bars.push(i); barWrap.appendChild(i); });
+    track.prepend(compact);
+    track.appendChild(barWrap);
+    compactLabel = compact.querySelector('.tabs__compact-label');
+    const [prev, next] = compact.querySelectorAll('button');
+    const go = d => { const i = links.indexOf(current) + d; if (links[i]) links[i].click(); };
+    prev.addEventListener('click', () => go(-1));
+    next.addEventListener('click', () => go(1));
+  }
 
   function moveIndicator(link) {
-    if (!tabs || !link) return;
-    const navBox = tabs.getBoundingClientRect();
+    if (!tabs || !link || !indicator) return;
+    const tr = track.getBoundingClientRect();
     const box = link.getBoundingClientRect();
-    const width = Math.max(box.width, Math.min(170, navBox.width / links.length));
-    const left = Math.min(box.left - navBox.left, navBox.width - width);
+    const x = box.left - tr.left + track.scrollLeft;
+    let width = box.width, left = x;
+    if (tabs.dataset.nav === '0') {
+      width = Math.max(box.width, Math.min(170, tr.width / links.length));
+      left = Math.min(x, track.scrollWidth - width);
+    }
     indicator.style.width = `${width}px`;
     indicator.style.transform = `translateX(${left}px)`;
+    indicator.style.setProperty('--ind-c', getComputedStyle(link.parentElement).getPropertyValue('--tab-c'));
+    tabs.style.setProperty('--tab-c', getComputedStyle(link.parentElement).getPropertyValue('--tab-c'));
+    // aktiven Eintrag in der scrollbaren Leiste zentrieren (Mobile)
+    if (track.scrollWidth > track.clientWidth) {
+      track.scrollTo({ left: Math.max(0, x - (tr.width - box.width) / 2), behavior: 'smooth' });
+    }
   }
   function setActive(link) {
-    links.forEach(l => {
+    current = link;
+    links.forEach((l, i) => {
       const active = l === link;
       l.classList.toggle('is-active', active);
       if (active) l.setAttribute('aria-current', 'step'); else l.removeAttribute('aria-current');
+      if (bars[i]) bars[i].classList.toggle('is-done', i <= links.indexOf(link));
     });
+    if (compactLabel) compactLabel.innerHTML = `<b>${pad2(links.indexOf(link) + 1)} / ${pad2(links.length)}</b>${link.querySelector('.tabs__label').textContent}`;
     moveIndicator(link);
+    setTimeout(() => { if (current === link) moveIndicator(link); }, 450);
   }
   links.forEach(l => l.addEventListener('click', () => setActive(l)));
 
@@ -37,8 +76,29 @@
     }, { rootMargin: '-45% 0px -45% 0px' });
     steps.forEach(s => io.observe(s));
   }
-  window.addEventListener('resize', () => moveIndicator(document.querySelector('.tabs__link.is-active')));
-  requestAnimationFrame(() => moveIndicator(links[0]));
+  window.addEventListener('resize', () => moveIndicator(current));
+
+  // Varianten-Umschalter (zum Testen; ?nav=a|b|c|d|0 oder Klick unten links)
+  function setVariant(v) {
+    if (!VARIANTS[v] || !tabs) return;
+    tabs.dataset.nav = v;
+    try { localStorage.setItem('panedodo-nav', v); } catch (e) {}
+    document.querySelectorAll('.navpick button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === v)));
+    requestAnimationFrame(() => moveIndicator(current));
+    setTimeout(() => moveIndicator(current), 450);
+  }
+  if (tabs) {
+    const pick = document.createElement('div');
+    pick.className = 'navpick';
+    pick.innerHTML = '<span style="padding:0 6px 0 4px;opacity:.6">Nav</span>' +
+      Object.entries(VARIANTS).map(([k, n]) => `<button type="button" data-v="${k}" aria-pressed="false">${n}</button>`).join('');
+    pick.addEventListener('click', e => { const b = e.target.closest('button'); if (b) setVariant(b.dataset.v); });
+    document.body.appendChild(pick);
+    let v = new URLSearchParams(location.search).get('nav');
+    if (!VARIANTS[v]) { try { v = localStorage.getItem('panedodo-nav'); } catch (e) {} }
+    setVariant(VARIANTS[v] ? v : 'a');
+    setActive(links[0]);
+  }
 
   /* ---------- Quiz ---------- */
   const QUESTIONS = [
